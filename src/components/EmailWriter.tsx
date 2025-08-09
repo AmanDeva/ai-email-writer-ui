@@ -136,8 +136,8 @@ const EmailWriter: React.FC = () => {
         },
         body: JSON.stringify({
           recipients: recipients,
-          subject: isEditing ? editableSubject : generatedEmail.subject,
-          content: isEditing ? editableContent : generatedEmail.content,
+          subject: editableSubject,
+          content: editableContent,
         }),
       });
 
@@ -153,7 +153,7 @@ const EmailWriter: React.FC = () => {
         // Update history to mark as sent
         setEmailHistory(prev => 
           prev.map(item => 
-            item.email === generatedEmail ? { ...item, sent: true } : item
+            item.id === emailHistory[0]?.id ? { ...item, sent: true } : item
           )
         );
 
